@@ -21,8 +21,8 @@ function Form() {
       console.log('newDeal', newDeal);
       const { error } = await supabase.from('sales_deals').insert(newDeal);
       if (error) {
-        console.error('Error adding deal: ', error.message);
-        return new Error('Failed to add deal');
+        console.error('Error adding amount: ', error.message);
+        return new Error('Failed to add amount');
       }
 
       return null;
@@ -47,7 +47,7 @@ function Form() {
       <form action={submitAction}>
         {currentUser?.account_type === 'rep' ? (
           <label htmlFor="deal-name">
-            Name:
+            Navn:
             <input
               id="deal-name"
               type="text"
@@ -59,7 +59,7 @@ function Form() {
           </label>
         ) : (
           <label htmlFor="deal-name">
-            Name:
+            Navn:
             <select
               id="deal-name"
               name="name"
@@ -72,7 +72,7 @@ function Form() {
         }
 
         <label htmlFor="deal-value">
-          Amount: $
+          Antall:
           <input
             id="deal-value"
             type="number"
@@ -80,7 +80,7 @@ function Form() {
             defaultValue={0}
             className="amount-input"
             min="0"
-            step="10"
+            step="1"
             disabled={isPending}
           />
         </label>
@@ -89,7 +89,7 @@ function Form() {
           type="submit"
           disabled={isPending}
         >
-          {isPending ? 'Adding...' : "Add Deal"}
+          {isPending ? 'Legger til...' : "Legg til"}
         </button>
       </form>
 
